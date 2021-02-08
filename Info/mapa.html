@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Localización</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="Slide Down Box Menu with jQuery and CSS3" />
+        <meta name="keywords" content="jquery, css3, sliding, box, menu, cube, navigation, portfolio, thumbnails"/>
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/> 
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+			body{
+				background:#333 url(bg.jpg) repeat top left;
+				font-family:Arial;
+			}
+			span.reference{
+				position:fixed;
+				left:10px;
+				bottom:10px;
+				font-size:12px;
+			}
+			span.reference a{
+				color:#aaa;
+				text-transform:uppercase;
+				text-decoration:none;
+				text-shadow:1px 1px 1px #000;
+				margin-right:30px;
+			}
+			span.reference a:hover{
+				color:#ddd;
+			}
+			ul.sdt_menu{
+				margin-top:150px;
+			}
+			
+            h1{
+                color: beige;
+                bottom: 150px;
+            }
+            </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBK4xh2iO--EJf8AxhPm8vgaZ-c2HvoeLY"></script>
+            <script type='text/javascript'>
+                //Cursor burbujas
+                // <![CDATA[
+            var colours=new Array("#22b870", "#22b870", "#22b870", "#22b870", "#22b870"); 
+            var bubbles=70; 
+            var x=ox=400;
+            var y=oy=300;
+            var swide=800;
+            var shigh=600;
+            var sleft=sdown=0;
+            var bubb=new Array();
+            var bubbx=new Array();
+            var bubby=new Array();
+            var bubbs=new Array();
+            
+            window.onload=function() { if (document.getElementById) {
+            var rats, div;
+            for (var i=0; i<bubbles; i++) {
+            rats=createDiv("3px", "3px");
+            rats.style.visibility="hidden";
+            
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.top="1px";
+            div.left="0px";
+            div.bottom="1px";
+            div.right="0px";
+            div.borderLeft="1px solid "+colours[3];
+            div.borderRight="1px solid "+colours[1];
+            
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.top="0px";
+            div.left="1px";
+            div.right="1px";
+            div.bottom="0px"
+            div.borderTop="1px solid "+colours[0];
+            div.borderBottom="1px solid "+colours[2];
+            
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.left="1px";
+            div.right="1px";
+            div.bottom="1px";
+            div.top="1px";
+            div.backgroundColor=colours[4];
+            if (navigator.appName=="Microsoft Internet Explorer") div.filter="alpha(opacity=50)";
+            else div.opacity=0.5;
+            document.body.appendChild(rats);
+            bubb[i]=rats.style;
+            }
+            set_scroll();
+            set_width();
+            bubble();
+            }}
+            
+            function bubble() {
+            var c;
+            if (x!=ox || y!=oy) {
+            ox=x;
+            oy=y;
+            for (c=0; c<bubbles; c++) if (!bubby[c]) {
+            bubb[c].left=(bubbx[c]=x)+"px";
+            bubb[c].top=(bubby[c]=y)+"px";
+            bubb[c].width="3px";
+            bubb[c].height="3px"
+            bubb[c].visibility="visible";
+            bubbs[c]=3;
+            break;
+            }
+            }
+            for (c=0; c<bubbles; c++) if (bubby[c]) update_bubb(c);
+            setTimeout("bubble()", 40);
+            }
+            
+            function update_bubb(i) {
+            if (bubby[i]) {
+            bubby[i]-=bubbs[i]/2+i%2;
+            bubbx[i]+=(i%5-2)/5;
+            if (bubby[i]>sdown && bubbx[i]>0) {
+            if (Math.random()<bubbs[i]/shigh*2 && bubbs[i]++<8) {
+            bubb[i].width=bubbs[i]+"px";
+            bubb[i].height=bubbs[i]+"px";
+            }
+            bubb[i].top=bubby[i]+"px";
+            bubb[i].left=bubbx[i]+"px";
+            }
+            else {
+            bubb[i].visibility="hidden";
+            bubby[i]=0;
+            return;
+            }
+            }
+            }
+            
+            document.onmousemove=mouse;
+            function mouse(e) {
+            set_scroll();
+            y=(e)?e.pageY:event.y+sleft;
+            x=(e)?e.pageX:event.x+sdown;
+            }
+            
+            window.onresize=set_width;
+            function set_width() {
+            var sw_min=999999;
+            var sh_min=999999;
+            if (document.documentElement && document.documentElement.clientWidth) {
+            if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+            if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+            }
+            if (typeof(self.innerWidth)!="undefined" && self.innerWidth) {
+            if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+            if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+            }
+            if (document.body.clientWidth) {
+            if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+            if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+            }
+            if (sw_min==999999 || sh_min==999999) {
+            sw_min=800;
+            sh_min=600;
+            }
+            swide=sw_min;
+            shigh=sh_min;
+            }
+            
+            window.onscroll=set_scroll;
+            function set_scroll() {
+            if (typeof(self.pageYOffset)=="number") {
+            sdown=self.pageYOffset;
+            sleft=self.pageXOffset;
+            }
+            else if (document.body.scrollTop || document.body.scrollLeft) {
+            sdown=document.body.scrollTop;
+            sleft=document.body.scrollLeft;
+            }
+            else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+            sleft=document.documentElement.scrollLeft;
+            sdown=document.documentElement.scrollTop;
+            }
+            else {
+            sdown=0;
+            sleft=0;
+            }
+            }
+            
+            function createDiv(height, width) {
+            var div=document.createElement("div");
+            div.style.position="absolute";
+            div.style.height=height;
+            div.style.width=width;
+            div.style.overflow="hidden";
+            return (div);
+            }
+            
+            </script>
+    </head>
+    <body">
+        <div class="page-container">
+            <nav class="full-reset nav-phonestore">
+                <div class="logo tittles-pages">
+                    Cafe Contigo
+                </div>
+                <ul class="list-unstyled full-reset navigation-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                </ul>
+                <i class="fa fa-bars visible-xs btn-mobile"></i>
+			</nav>
+		</div>
+        <div class="container" >
+                        <div class="form-group input-group">
+                            <input style="bottom: 580px; right: 70px; width: 115%;"type="text" id="search_location" class="form-control" placeholder="Search location">
+                            <div class="input-group-btn">
+                                <button style="bottom: 580px; left: 40px;" class="btn btn-default get_map" type="submit">
+                                    Locate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <!-- display google map -->
+                        <div id="geomap" style="width: 92.5%; height: 470px; bottom: 593px; margin-left: 35px;"></div>
+                        
+        <script>
+            var geocoder;
+            var map;
+            var marker;
+            
+            /*
+             * Google Map with marker
+             */
+            function initialize(posicion) {
+                
+                var initialLat = $('.search_latitude').val();
+                var initialLong = $('.search_longitude').val();
+                initialLat = initialLat?initialLat:19.8043631;
+                initialLong = initialLong?initialLong:-97.35715119999999;
+            
+                var latlng = new google.maps.LatLng(initialLat, initialLong);
+                var options = {
+                    zoom: 17,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+            
+                map = new google.maps.Map(document.getElementById("geomap"), options);
+            
+                geocoder = new google.maps.Geocoder();
+            
+                marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    position: latlng
+                });
+            
+                google.maps.event.addListener(marker, "dragend", function () {
+                    var point = marker.getPosition();
+                    map.panTo(point);
+                    geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            map.setCenter(results[0].geometry.location);
+                            marker.setPosition(results[0].geometry.location);
+                            $('.search_addr').val(results[0].formatted_address);
+                            $('.search_latitude').val(marker.getPosition().lat());
+                            $('.search_longitude').val(marker.getPosition().lng());
+                        }
+                    });
+                });
+            
+            }
+            
+            $(document).ready(function () {
+                //load google map
+                initialize();
+                
+                /*
+                 * autocomplete location search
+                 */
+                var PostCodeid = '#search_location';
+                $(function () {
+                    $(PostCodeid).autocomplete({
+                        source: function (request, response) {
+                            geocoder.geocode({
+                                'address': request.term
+                            }, function (results, status) {
+                                response($.map(results, function (item) {
+                                    return {
+                                        label: item.formatted_address,
+                                        value: item.formatted_address,
+                                        lat: item.geometry.location.lat(),
+                                        lon: item.geometry.location.lng()
+                                    };
+                                }));
+                            });
+                        },
+                        select: function (event, ui) {
+                            $('.search_addr').val(ui.item.value);
+                            $('.search_latitude').val(ui.item.lat);
+                            $('.search_longitude').val(ui.item.lon);
+                            var latlng = new google.maps.LatLng(ui.item.lat, ui.item.lon);
+                            marker.setPosition(latlng);
+                            initialize();
+                        }
+                    });
+                });
+                
+                /*
+                 * Point location on google map
+                 */
+                $('.get_map').click(function (e) {
+                    var address = $(PostCodeid).val();
+                    geocoder.geocode({'address': address}, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            map.setCenter(results[0].geometry.location);
+                            marker.setPosition(results[0].geometry.location);
+                            $('.search_addr').val(results[0].formatted_address);
+                            $('.search_latitude').val(marker.getPosition().lat());
+                            $('.search_longitude').val(marker.getPosition().lng());
+                        } else {
+                            alert("Geocode was not successful for the following reason: " + status);
+                        }
+                    });
+                    e.preventDefault();
+                });
+            
+                //Add listener to marker for reverse geocoding
+                google.maps.event.addListener(marker, 'drag', function () {
+                    geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                $('.search_addr').val(results[0].formatted_address);
+                                $('.search_latitude').val(marker.getPosition().lat());
+                                $('.search_longitude').val(marker.getPosition().lng());
+                            }
+                        }
+                    });
+                });
+            });
+    </script> 
+  </body>
+</html>

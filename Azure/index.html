@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script type='text/javascript'>
+			//Cursor burbujas
+			// <![CDATA[
+			var colours=new Array("#22b870", "#22b870", "#22b870", "#22b870", "#22b870"); 
+			var bubbles=70; 
+			var x=ox=400;
+			var y=oy=300;
+			var swide=800;
+			var shigh=600;
+			var sleft=sdown=0;
+			var bubb=new Array();
+			var bubbx=new Array();
+			var bubby=new Array();
+			var bubbs=new Array();
+			
+			window.onload=function() { if (document.getElementById) {
+			var rats, div;
+			for (var i=0; i<bubbles; i++) {
+			rats=createDiv("3px", "3px");
+			rats.style.visibility="hidden";
+			
+			div=createDiv("auto", "auto");
+			rats.appendChild(div);
+			div=div.style;
+			div.top="1px";
+			div.left="0px";
+			div.bottom="1px";
+			div.right="0px";
+			div.borderLeft="1px solid "+colours[3];
+			div.borderRight="1px solid "+colours[1];
+			
+			div=createDiv("auto", "auto");
+			rats.appendChild(div);
+			div=div.style;
+			div.top="0px";
+			div.left="1px";
+			div.right="1px";
+			div.bottom="0px"
+			div.borderTop="1px solid "+colours[0];
+			div.borderBottom="1px solid "+colours[2];
+			
+			div=createDiv("auto", "auto");
+			rats.appendChild(div);
+			div=div.style;
+			div.left="1px";
+			div.right="1px";
+			div.bottom="1px";
+			div.top="1px";
+			div.backgroundColor=colours[4];
+			if (navigator.appName=="Microsoft Internet Explorer") div.filter="alpha(opacity=50)";
+			else div.opacity=0.5;
+			document.body.appendChild(rats);
+			bubb[i]=rats.style;
+			}
+			set_scroll();
+			set_width();
+			bubble();
+			}}
+			
+			function bubble() {
+			var c;
+			if (x!=ox || y!=oy) {
+			ox=x;
+			oy=y;
+			for (c=0; c<bubbles; c++) if (!bubby[c]) {
+			bubb[c].left=(bubbx[c]=x)+"px";
+			bubb[c].top=(bubby[c]=y)+"px";
+			bubb[c].width="3px";
+			bubb[c].height="3px"
+			bubb[c].visibility="visible";
+			bubbs[c]=3;
+			break;
+			}
+			}
+			for (c=0; c<bubbles; c++) if (bubby[c]) update_bubb(c);
+			setTimeout("bubble()", 40);
+			}
+			
+			function update_bubb(i) {
+			if (bubby[i]) {
+			bubby[i]-=bubbs[i]/2+i%2;
+			bubbx[i]+=(i%5-2)/5;
+			if (bubby[i]>sdown && bubbx[i]>0) {
+			if (Math.random()<bubbs[i]/shigh*2 && bubbs[i]++<8) {
+			bubb[i].width=bubbs[i]+"px";
+			bubb[i].height=bubbs[i]+"px";
+			}
+			bubb[i].top=bubby[i]+"px";
+			bubb[i].left=bubbx[i]+"px";
+			}
+			else {
+			bubb[i].visibility="hidden";
+			bubby[i]=0;
+			return;
+			}
+			}
+			}
+			
+			document.onmousemove=mouse;
+			function mouse(e) {
+			set_scroll();
+			y=(e)?e.pageY:event.y+sleft;
+			x=(e)?e.pageX:event.x+sdown;
+			}
+			
+			window.onresize=set_width;
+			function set_width() {
+			var sw_min=999999;
+			var sh_min=999999;
+			if (document.documentElement && document.documentElement.clientWidth) {
+			if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+			if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+			}
+			if (typeof(self.innerWidth)!="undefined" && self.innerWidth) {
+			if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+			if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+			}
+			if (document.body.clientWidth) {
+			if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+			if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+			}
+			if (sw_min==999999 || sh_min==999999) {
+			sw_min=800;
+			sh_min=600;
+			}
+			swide=sw_min;
+			shigh=sh_min;
+			}
+			
+			window.onscroll=set_scroll;
+			function set_scroll() {
+			if (typeof(self.pageYOffset)=="number") {
+			sdown=self.pageYOffset;
+			sleft=self.pageXOffset;
+			}
+			else if (document.body.scrollTop || document.body.scrollLeft) {
+			sdown=document.body.scrollTop;
+			sleft=document.body.scrollLeft;
+			}
+			else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+			sleft=document.documentElement.scrollLeft;
+			sdown=document.documentElement.scrollTop;
+			}
+			else {
+			sdown=0;
+			sleft=0;
+			}
+			}
+			
+			function createDiv(height, width) {
+			var div=document.createElement("div");
+			div.style.position="absolute";
+			div.style.height=height;
+			div.style.width=width;
+			div.style.overflow="hidden";
+			return (div);
+			}
+			
+			</script>
+        <title>Analizador de Imagenes</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="Slide Down Box Menu with jQuery and CSS3" />
+        <meta name="keywords" content="jquery, css3, sliding, box, menu, cube, navigation, portfolio, thumbnails"/>
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+        <style>
+			body{
+				background:#333 url(bg.jpg) repeat top left;
+				font-family:Arial;
+			}
+			span.reference{
+				position:fixed;
+				left:10px;
+				bottom:10px;
+				font-size:12px;
+			}
+			span.reference a{
+				color:#aaa;
+				text-transform:uppercase;
+				text-decoration:none;
+				text-shadow:1px 1px 1px #000;
+				margin-right:30px;
+			}
+			span.reference a:hover{
+				color:#ddd;
+			}
+			ul.sdt_menu{
+				margin-top:150px;
+			}
+			h1.title{
+				text-indent:-9000px;
+				background:transparent url(title.png) no-repeat top left;
+				width:633px;
+				height:69px;
+			}
+			
+.btn {
+  position: relative;
+  padding: 8px 16px;
+  font-family: 'psychotik';
+  font-size: 1.2em;
+  font-weight: normal;
+  color: #fff;
+  text-shadow: none;
+  border-radius: 16px;
+  background: #00A6B6;
+  box-shadow: inset 2px 2px 1px #007f8b;
+}
+
+.btn:hover {
+  background: #FF9C00;
+  box-shadow: inset 2px 2px 1px #995f02;
+}
+
+#modalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+  margin: -2% 0px 0px -150px;
+  float: left;
+  width: 300px;
+  color: #fff;
+  line-height: 22px;
+  padding: 15px;
+  border-radius: 5px;
+  background: #00A6B6;
+  border: 1px solid #fff;
+  box-shadow: 0px 2px 1px #999;
+}
+
+#modal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: none;
+  opacity: 0;
+}
+
+#modal>a {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+:target {
+  display: block!important;
+  opacity: 1!important;
+}
+
+#modalContent>a {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  color: #00A6B6;
+  border-radius: 2px;
+  background: #fff;
+  padding: 4px;
+}
+		</style>
+    </head>
+
+    <body>
+		<script type="text/javascript">
+			function processImage() {
+				// **********************************************
+				// **_ Update or verify the following values. _*_
+				// _*********************************************
+		
+				var subscriptionKey = document.getElementById("subscriptionKey").value;
+				var endpoint = document.getElementById("endpointUrl").value;
+				
+				var uriBase = endpoint;
+		
+				// Request parameters.
+			  /*      var params = {
+			   "visualFeatures": "tagId,probability,tagName",
+				"details": " Si tu planta ",
+				  "language": "en",
+			  };*/
+		
+				// Display the image.
+				var sourceImageUrl = document.getElementById("inputImage").value;
+				document.querySelector("#sourceImage").src = sourceImageUrl;
+		
+				// Make the REST API call.
+				$.ajax({
+				   // url: uriBase + "?" + $.param(params),
+				   url: uriBase,
+		
+					// Request headers.
+					beforeSend: function(xhrObj){
+						xhrObj.setRequestHeader("Content-Type","application/json");
+						xhrObj.setRequestHeader(
+							"Prediction-Key", subscriptionKey);
+					},
+		
+					type: "POST",
+		
+					// Request body.
+					data: '{"url": ' + '"' + sourceImageUrl + '"}',
+				})
+		
+				.done(function(data) {
+					// Show formatted JSON on webpage.
+					$("#responseTextArea").val(JSON.stringify(data, null, 2));
+				})
+		
+				.fail(function(jqXHR, textStatus, errorThrown) {
+					// Display error message.
+					var errorString = (errorThrown === "") ? "Error. " :
+						errorThrown + " (" + jqXHR.status + "): ";
+					errorString += (jqXHR.responseText === "") ? "" :
+						jQuery.parseJSON(jqXHR.responseText).message;
+					alert(errorString);
+				});
+			};
+		</script>
+		<div class="page-container">
+            <nav class="full-reset nav-phonestore">
+                <div class="logo tittles-pages">
+                    Cafe Contigo
+                </div>
+                <ul class="list-unstyled full-reset navigation-list">
+                    <li><a href="../index.html">Inicio</a></li>
+
+                </ul>
+                <i class="fa fa-bars visible-xs btn-mobile"></i>
+			</nav>
+		
+		</br>
+		<h1 style="color: azure; text-align: center;">Analiza tu imagen del cafe:</h1>
+	</br>
+	<form>
+		<fieldset>
+		  <legend style="color: white;">Datos Escenciales</legend>
+		  <p>
+			<p>
+				<label Style="color: beige;" for="taste_2">Subscription key:</label>
+				<input Style="background: transparent; color: white;" readonly=»readonly» margin type="text" name="subscriptionKey" id="subscriptionKey"
+				value="f0259d048f4d413ab16187f68df2e0e1"/> 
+			  
+			</p>
+		  </p>
+		  <p>
+			<label Style="color: beige;"for="size_2">Endpoint URL:</label>
+			<input Style="background: transparent; color: white;" readonly=»readonly» type="text" name="endpointUrl" id="endpointUrl"
+    		value="https://customresourse.cognitiveservices.azure.com/customvision/v3.0/Prediction/2a5dd742-3340-4f24-af73-6c3f436aab8f/classify/iterations/Iteration3/url" />
+			
+		  </p>
+		  <p>
+			<label Style="color: beige;"for="size_2">Inserte la URL de la imagen: </label>
+			<input type="text" name="inputImage" id="inputImage"
+    		value=" " />
+			
+		  </p>
+		</fieldset>
+	  </form>
+	
+<br><br>
+		<a style="margin-left: 400px; bottom: -17px;" href="#modal" title="" class="btn">Instrucciones</a>
+		<!-- La modal -->
+		<div id="modal">
+  		<a href="#cerrar"></a>
+  		<div id="modalContent">
+    <p>Ingrese la URL de la imagen que desea analizar, luego haga clic en el boton denominado analizar</p> <a href="#cerrar">X</a> </div>
+</div>
+
+<button  class="btn"style="margin-left: 800px; bottom: 15px;" onclick="processImage()">Analizar imagen</button>
+</br></br></br></br>
+
+<div id="wrapper" style="width:1020px; display:table;">
+    <div Style=" margin-left: 30px; color: green;" id="jsonOutput" style="width:600px; display:table-cell;">
+        Datos Generados
+        <br><br>
+        <textarea  id="responseTextArea" class="UIInput"
+                  style="width:580px; height:400px;"></textarea>
+    </div>
+    <div id="imageDiv" style="color:green; width:400px; display:table-cell;">
+        Cargar Imagen
+        <br><br>
+        <img id="sourceImage" width="400" />
+    </div>
+</div>
+	<script>
+		focusMethod = function getFocus() {           
+  		document.getElementById("inputImage").focus();
+		}
+	</script>
+    </body>
+</html>
