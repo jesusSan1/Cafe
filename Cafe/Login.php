@@ -4,13 +4,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <link rel="stylesheet" href="../css/estilo.css">
     <?php
         include("../Layout/estilos.php");
     ?>
+     <link  rel="icon"   href="../assets/img/favicon.png" type="image/png" />
+
+    <link rel="stylesheet" href="../css/nuevo.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio de sesión</title>
     <script type='text/javascript'>
     
     var colours=new Array("#22b870", "#22b870", "#22b870", "#22b870", "#22b870"); 
@@ -175,6 +177,7 @@
 	<h2>Industrias Cafetaleras</h2>
 	<h1>Cuide su café</h1>
 </header>
+<br>
 <div class="container">
         <form action="validarSesion.php" method="post">
             <div class="row">
@@ -184,7 +187,7 @@
                         <h5 class="card-header bg-dark text-white text-center">Iniciar Sesión</h5>
                         <div class="card-body">
                             <div class="text-center">
-                                <img src="../Imagenes/portada.png" width="150" height="150" />
+                                <img src="../Imagenes/portada.png" width="150" height="150"/>
                             </div>
                             <div class="form-group">
                                 <label for="txtUsuario">Usuario</label>
@@ -195,12 +198,12 @@
                                 <input type="password" name="txtPassword" id="txtPassword" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input href="index.html" type="submit" class="btn btn-outline-dark btn-block" value="Iniciar Sesión" />
+                                <input href="index.html" type="submit" class="btn btn-success btn-block" value="Iniciar Sesión" />
 
                             </div>
                             <div class="form-group">
                                 <center>
-                                    <a href="wfrmRegistrar.php" class="btn btn-light">Registrarse</a>
+                                    <a href="wfrmRegistrar.php" class="btn btn-outline-primary btn-block">Registrarse</a>
                                 </center>
                             </div>
                         </div>
