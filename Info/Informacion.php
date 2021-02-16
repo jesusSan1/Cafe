@@ -72,7 +72,7 @@
                     </thead>
                     <tbody>
                     <?php 
-                $cmd = "select * from usuario";
+                $cmd = "select * from cafeticultor";
                 $resultado = $conexion->query($cmd);
                 while($row = $resultado->fetch_array(MYSQLI_ASSOC)){
                     ?>

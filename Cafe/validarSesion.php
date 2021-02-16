@@ -3,7 +3,7 @@
     include("../Conexion/cn.php");
     $nombre = $_POST['txtUsuario'];
     $password = $_POST['txtPassword'];
-    $cmd = $conexion->prepare("select * from Usuario ".
+    $cmd = $conexion->prepare("select * from Usuarios ".
     " where usuario=? and pwd=?");
     $cmd->bind_param("ss",$nombre,$password);
     $cmd->execute();
