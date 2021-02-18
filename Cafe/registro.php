@@ -1,13 +1,14 @@
 <?php
 include("../Conexion/cn.php");
 $nombre = $_POST['txtNombre'];
-$apepat = $POST['txtApepat'];
-$apemat = $POST['txtApemat'];
-$numCel = $POST['txtNumeroCel'];
+$apepat = $_POST['txtApepat'];
+$apemat = $_POST['txtApemat'];
+$numCel = $_POST['txtNumeroCel'];
 $usuario = $_POST['txtUsuario'];
 $password = $_POST['txtPassword'];
-$cmd =  $conexion->prepare("INSERT INTO `cafe`.`usuarios` (`nombre`, `usuario`, `pwd`) VALUES (?, ?, ?);");
-$cmd->bind_param("sss",$nombre,$usuario,$password);
+$cmd =  $conexion->prepare("INSERT INTO `cafe`.`usuarios` 
+(`Nombre`, `apepat`, `apemat`,`numeroCel`,`usuario`, `pwd`) VALUES (?, ?, ?, ?, ?, ?);");
+$cmd->bind_param("ssssss",$nombre,$apepat,$apemat, $numCel,$usuario,$password);
 echo"¡Se almaceno correctamente tu informacion!";
 $cmd->execute();
 echo $cmd->error;
