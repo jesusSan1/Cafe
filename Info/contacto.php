@@ -8,8 +8,7 @@
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/style.css">
-        <link rel="Shortcut Icon" type="image/x-icon"
-            href="assets/icons/shortcut-icon.ico" />
+        <link rel="Shortcut Icon" type="image/x-icon" href="../assets/img/favicon.png" />
         <link href='http://fonts.googleapis.com/css?family=Lobster'
             rel='stylesheet' type='text/css'>
         <script
