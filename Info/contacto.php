@@ -238,7 +238,7 @@ return (div);
                             <div class="col-xs-12 col-md-8 col-md-pull-4">
                                 <h2 class="tittles-pages text-center">Formulario
                                     de contacto</h2>
-                                <form action="mailto:paquito.martinez2502.pm@gmail.com" method="post" class="form-horizontal" role="form">
+                                <form method="post" class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label class="control-label col-sm-2">Tu
                                             nombre</label>
@@ -246,7 +246,7 @@ return (div);
                                             <input type="text"
                                                 class="form-control
                                                 input-form-contact"
-                                                placeholder="Escribe tu nombre">
+                                                placeholder="Escribe tu nombre" name="name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -256,7 +256,7 @@ return (div);
                                             <input type="email"
                                                 class="form-control
                                                 input-form-contact"
-                                                placeholder="Escribe tu Email">
+                                                placeholder="Escribe tu Email" name="email" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -265,7 +265,7 @@ return (div);
                                             <input type="text"
                                                 class="form-control
                                                 input-form-contact"
-                                                placeholder="Asunto">
+                                                placeholder="Asunto" name="asunto" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -275,12 +275,15 @@ return (div);
                                             <textarea class="form-control
                                                 input-form-contact" rows="3"
                                                 placeholder="Escribe tu
-                                                mensaje"></textarea>
+                                                mensaje" name="mensaje" required></textarea>
                                         </div>
                                     </div>
                                     <button  type="submit" class="btn btn-primary
-                                        pull-right">Enviar</button>
+                                        pull-right" name="enviar">Enviar</button>
                                 </form>
+                            <?php
+                            include("correo.php");
+                            ?>
                             </div>
                         </div>
                     </div>
