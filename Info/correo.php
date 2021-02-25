@@ -7,4 +7,5 @@
 
     $contenido = "Nombre: ". $nombre . "\nCorreo:" . $email . "\nAsunto: " . $asunto . "\nMensaje: " . $mensaje;
     mail($destino, $asunto, $contenido);
+    header("location: contacto.php");
 ?>

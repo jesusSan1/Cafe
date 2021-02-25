@@ -237,7 +237,7 @@ return (div);
                             <div class="col-xs-12 col-md-8 col-md-pull-4">
                                 <h2 class="tittles-pages text-center">Formulario
                                     de contacto</h2>
-                                <form method="post" class="form-horizontal" role="form">
+                                <form action="correo.php"method="post" class="form-horizontal">
                                     <div class="form-group">
                                         <label class="control-label col-sm-2">Tu
                                             nombre</label>
@@ -279,10 +279,8 @@ return (div);
                                     </div>
                                     <button  type="submit" class="btn btn-primary
                                         pull-right" name="enviar">Enviar</button>
+                           
                                 </form>
-                            <?php
-                            include("correo.php");
-                            ?>
                             </div>
                         </div>
                     </div>
