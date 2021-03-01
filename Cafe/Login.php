@@ -219,7 +219,7 @@
             $status = $_GET['status'];  
             echo "<script type='text/javascript' >";
             if($status == 400){
-                echo "swal('Cuidado','User incorrecto','warning');";
+                echo "swal('Cuidado','Usuario y/o contraseña incorrectas','warning');";
             }   
             if($status == 500){
                 echo "swal('Cuidado','Error de sesión','error');";

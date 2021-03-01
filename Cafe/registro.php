@@ -6,7 +6,7 @@ $apemat = $_POST['txtApemat'];
 $numCel = $_POST['txtNumeroCel'];
 $usuario = $_POST['txtUsuario'];
 $password = $_POST['txtPassword'];
-$cmd =  $conexion->prepare("INSERT INTO `cafe`.`usuarios` 
+$cmd =  $conexion->prepare("INSERT INTO `cafe`.`cafeticultor` 
 (`Nombre`, `apepat`, `apemat`,`numeroCel`,`usuario`, `pwd`) VALUES (?, ?, ?, ?, ?, ?);");
 $cmd->bind_param("ssssss",$nombre,$apepat,$apemat, $numCel,$usuario,$password);
 echo"¡Se almaceno correctamente tu informacion!";
