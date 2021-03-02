@@ -4,6 +4,7 @@
   //  header("location: Login.php?status=500");
 //}
 include("../Conexion/cn.php");
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +54,7 @@ include("../Conexion/cn.php");
         </p>
 
     </form> -->
+    
     <form method="POST" action="registro.php">
     <div class="container">
 
@@ -122,7 +124,7 @@ include("../Conexion/cn.php");
                         <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                         <!-- Guardar -->
-                        <input href="Login.php" type="submit" value="Guardar" class="btn btn-dark">
+                        <input  type="submit" value="Guardar" class="btn btn-dark" name="guardar">
 
                         </div>  
                         <span class="help-block" id="error"></span>                    
@@ -137,7 +139,19 @@ include("../Conexion/cn.php");
                         </div>  
                         <span class="help-block" id="error"></span>                    
                    </div>
-                            
+                       <?php
+                        //incluir mensaje de usuario existente
+                        include("../Layout/scripts.php");
+                        if(isset($_SESSION['MensajeUsuarioExiste'])){?>
+                            <script> swal('Cuidado', 'El usuario ya existe', 'warning');</script>
+                            <?php session_unset();}?>     
+                       <?php
+                        //incluir mensaje de error
+                        include("../Layout/scripts.php");
+                        if(isset($_SESSION['MensajeError'])){?>
+                            <script> swal('Error', 'Hubo un error, vuelve a intentar', 'error');</script>
+                            <?php session_unset();}?>     
+ 
              </div>
                         
                         
@@ -151,7 +165,8 @@ include("../Conexion/cn.php");
  </div>
  </form>
 
-    <?php include("../Layout/scripts.php");
+    <?php 
+    
         ?>
 
     <!--$_SESSION-->

@@ -191,7 +191,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="txtUsuario">Usuario</label>
-                                <input type="text" name="txtUsuario" id="txtUsuario" class="form-control">
+                                <input type="text" name="txtUsuario" id="txtUsuario" class="form-control" autofocus="autofocus">
                             </div>
                             <div class="form-group">
                                 <label for="txtPassword">Password</label>
@@ -203,7 +203,7 @@
                             </div>
                             <div class="form-group">
                                 <center>
-                                    <a href="wfrmRegistrar.php" class="btn btn-outline-primary btn-block">Registrarse</a>
+                                    <a href="wfrmRegistrar.php" class="btn btn-outline-primary btn-block" name="registrarse">Registrarse</a>
                                 </center>
                             </div>
                         </div>
@@ -212,6 +212,12 @@
             </div>
             <div class="col-sm-1 col-md-2 col-lg-4"></div>
         </form>
+        <?php
+                        //incluir mensaje exito al registrarse
+                        include("../Layout/scripts.php");
+                        if(isset($_SESSION['MensajeExito'])){?>
+                            <script> swal('Enhorabuena', 'Has sido registrado en el sistema', 'success');</script>
+                            <?php session_unset();}?>    
     </div>
     <?php
         include("../Layout/scripts.php");
