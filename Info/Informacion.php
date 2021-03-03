@@ -1,6 +1,11 @@
 <?php
-    session_start();
-    include("../Conexion/cn.php");
+session_start();
+include("../Conexion/cn.php");
+
+$usuario = $_SESSION['idUsuario'];
+$sql = "SELECT nombre, apepat, apemat, numeroCel FROM Cafeticultor WHERE id_Agricultor = '$usuario'";
+$resultado = $conexion->query($sql);
+$row = $resultado->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,21 +76,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php 
-                $cmd = "select * from cafeticultor";
-                $resultado = $conexion->query($cmd);
-                while($row = $resultado->fetch_array(MYSQLI_ASSOC)){
-                    ?>
+
             <tr>
 <!--                 <th scope="row">
-                    <?php 
-                                //echo $row['id_Agricultor']
-                    ?>
+
                 </th> -->
+                
                 <td>
-                    <?php 
-                                echo $row['nombre']
-                            ?>
+                   <!-- Aqui -->
+                  <?php echo $row['nombre'];?>
                 </td>
                 <td>
                     <?php 
@@ -102,14 +101,12 @@
                                 echo $row['numeroCel']
                             ?>
                 </td>
+
                 <center>
                     <td><a href="wfrmActualizar.php?Id=<?php echo $row['id_Agricultor']; ?>"
                             class="btn btn-warning">Actualizar</a></td>
                 </center>
             </tr>
-            <?php
-                }
-                ?>
 
         </tbody>
         </form>

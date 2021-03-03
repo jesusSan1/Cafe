@@ -1,5 +1,6 @@
 <?php
     include("../Conexion/cn.php");
+    session_start();
 /*     $nombre = mysqli_real_escape_string($conexion, $_POST['txtUsuario']);
     $password = mysqli_real_escape_string($conexion, $_POST['txtPassword']);
     $passwordEncriptada = sha1($password);
