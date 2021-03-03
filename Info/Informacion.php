@@ -1,7 +1,11 @@
 <?php
 session_start();
 include("../Conexion/cn.php");
-
+//Si el usuario no está logeado, lo redirige a inicio de sesion
+if(!isset($_SESSION['idUsuario'])){
+    header("Location: ../Cafe/Login.php");
+}
+//Sirve para mostrar la informacion del usuario logeado
 $usuario = $_SESSION['idUsuario'];
 $sql = "SELECT nombre, apepat, apemat, numeroCel FROM Cafeticultor WHERE id_Agricultor = '$usuario'";
 $resultado = $conexion->query($sql);
@@ -56,7 +60,7 @@ $row = $resultado->fetch_assoc();
                     <a class="btn btn-primary" href="../index.html" role="button">Regresar Inicio</a>
                     <br>
                     <br>
-                    <a class="btn btn-danger" href="./Cafe/salir.php" role="button">Cerrar sesión</a>
+                    <a class="btn btn-danger" href="salir.php" role="button">Cerrar sesión</a>
                     
                 </div>
 

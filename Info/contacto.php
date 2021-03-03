@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    include("../Conexion/cn.php");
+    //Si el usuario no está logeado, lo redirige a inicio de sesion
+    if(!isset($_SESSION['idUsuario'])){
+        header("Location: ../Cafe/Login.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
