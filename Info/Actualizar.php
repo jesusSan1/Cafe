@@ -19,12 +19,12 @@
 
     if(isset($_POST['actualizar'])){
         $id = $_GET['id'];
+        $usuario = $_SESSION['idUsuario'];
         $nombre = $_POST['txtNombre'];
         $apepat = $_POST['txtApepat'];
         $apemat = $_POST['txtApemat'];
         $numeroCel = $_POST['txtNumCel'];
-//        $query = "UPDATE mascota set nombre = '$nombre', descripcion = '$descripcion' WHERE id = $id";
-        $query = "UPDATE Cafeticultor set nombre = '$nombre', apepat = '$apepat', apemat = '$apemat', numeroCel = '$numeroCel'";
+        $query = "UPDATE Cafeticultor set nombre = '$nombre', apepat = '$apepat', apemat = '$apemat', numeroCel = '$numeroCel' WHERE id_Agricultor = '$usuario'";
         mysqli_query($conexion, $query);
         header("location: ../Info/Informacion.php");
     }

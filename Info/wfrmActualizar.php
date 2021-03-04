@@ -41,7 +41,7 @@ include("../Conexion/cn.php");
             } */
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
-                $query = "SELECT id_agricultor FROM Agricultor WHERE id = $id";
+                $query = "SELECT id_Agricultor FROM Cafeticultor WHERE id = $id";
                 $resultado = mysqli_query($conexion, $query);
                 if(mysqli_num_rows($resultado)==1){
                     $fila = mysqli_fetch_array($resultado);
