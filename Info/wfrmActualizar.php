@@ -29,7 +29,7 @@ include("../Conexion/cn.php");
         <?php
            
             //AQUI VAMOS A PROGRAMAR LA PARTE DE LA CARGA DE LA INFORMACION ALMACENADA
-            if(!isset($_GET['Id'])){
+/*             if(!isset($_GET['Id'])){
                 
                 $cmd = $conexion->prepare("select * from Cafeticultor where id_Agricultor=?");
                 $cmd->bind_param("i",$id_Agricultor);
@@ -38,13 +38,25 @@ include("../Conexion/cn.php");
                 $cmd->store_result();
                 $cmd->fetch();
                 $cmd->close();
+            } */
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $query = "SELECT id_agricultor FROM Agricultor WHERE id = $id";
+                $resultado = mysqli_query($conexion, $query);
+                if(mysqli_num_rows($resultado)==1){
+                    $fila = mysqli_fetch_array($resultado);
+                    $nombre = $fila['txtNombre'];
+                    $apepat = $fila['txtApepat'];
+                    $apemat = $fila['txtApemat'];
+                    $numeroCel = $fila['txtNumCel'];
+                }
             }
           
         ?>
 
         <ul>
             <!---->
-            <form class="container" method="post" action="Actualizar.php">
+            <!-- <form class="container" method="post" action="Actualizar.php">
                     <div class="col-md-4">
                         <label>Nombre </label>
                         <input type="text" name="txtnombre" id="" class="form-control" value="">
@@ -65,13 +77,40 @@ include("../Conexion/cn.php");
                         <input type="text" name="txtNum" id="" class="form-control" value="">
                     </div>
                 </div>
-                </div>
+                </div> -->
+                <div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body">
+                <form action="Actualizar.php" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="txtNombre" value="" class="form-control" placeholder="Actualizar nombre">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" name="txtApepat" value="" class="form-control" placeholder="Actualizar apellido paterno">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" name="txtApemat" value="" class="form-control" placeholder="Actualizar apellido materno">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" name="txtNumCel" value="" class="form-control" placeholder="Actualizar numero de celular">
+                    </div>
+                    <div class="form-group">
+                    <input  href="Informacion.php"type="submit" value="Actualizar" class="btn btn-success" name="actualizar">
+                    <input  href="Informacion.php"type="submit" value="Regresar" class="btn btn-danger" name="regresar">
+                    </div>
+                    <!-- <button href="Info/Informacion.php" class="btn btn-danger">Regresar</button> -->
 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                 <br />
                 <p>
                     <center>
-                        <input  href="Informacion.php"type="submit" value="Actualizar" class="btn btn-success">
-                        <input  href="Informacion.php"type="submit" value="Regresar" class="btn btn-success">
+                        <!-- <input  href="Informacion.php"type="submit" value="Actualizar" class="btn btn-success">
+                        <input  href="Informacion.php"type="submit" value="Regresar" class="btn btn-success"> -->
                         <!--<a href="../Info/Informacion.html" class="btn btn-dark">Pagina Principal</a>-->
                     </center>
                 </p>
@@ -81,6 +120,7 @@ include("../Conexion/cn.php");
         ?>
 
             <!--$_SESSION-->
+
     </body>
 
     </html>
