@@ -61,63 +61,36 @@ $row = $resultado->fetch_assoc();
                     <a class="btn btn-primary" href="../index.html" role="button">Regresar Inicio</a>
                     <br>
                     <br>
+                    <td><a href="wfrmActualizar.php?Id=<?php echo $row['id_Agricultor']; ?>" class="btn btn-warning">Actualizar</a></td>
+                    <br>
+                    <br>
                     <a class="btn btn-danger" href="salir.php" role="button">Cerrar sesión</a>
-                    
                 </div>
 
                 <div class="col-md-2">
                 </div>
             </div>
             <div class="row">
-                <form action="Actualizar.php" method="POST">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <!-- <th scope="col" name="txtId">Id</th> -->
-                        <th scope="col" name="txtnombre">Nombre</th>
-                        <th scope="col" name="txtapepat">Apellido Paterno</th>
-                        <th scope="col" name="txtpemat">Apellido Materno</th>
-                        <th scope="col" name="txtNum">numero celular</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-            <tr>
-<!--                 <th scope="row">
-
-                </th> -->
-                
-                <td>
-                   <!-- Aqui -->
-                  <?php echo $row['nombre'];?>
-                </td>
-                <td>
-                    <?php 
-                                echo $row['apepat']
-                            ?>
-                </td>
-                <td>
-                    <?php 
-                                echo $row['apemat']
-                            ?>
-                </td>
-                <td>
-                    <?php 
-                                echo $row['numeroCel']
-                            ?>
-                </td>
-
-                <center>
-                    <td><a href="wfrmActualizar.php?Id=<?php echo $row['id_Agricultor']; ?>"
-                            class="btn btn-warning">Actualizar</a></td>
-                </center>
-            </tr>
-
-        </tbody>
-        </form>
-    </table>
-
-
+                    <form action="Actualizar.php" method="POST">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" name="txtnombre">Nombre</th>
+                            <th scope="col" name="txtapepat">Apellido Paterno</th>
+                            <th scope="col" name="txtpemat">Apellido Materno</th>
+                            <th scope="col" name="txtNum">numero celular</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['nombre']?></td>
+                                <td><?php echo $row['apepat']?></td>
+                                <td><?php echo $row['apemat']?></td>
+                                <td><?php echo $row['numeroCel']?></td>
+                            </tr>
+                        </tbody>
+                    </form>
+                </table>
             </div>
         </form>
     </div>
