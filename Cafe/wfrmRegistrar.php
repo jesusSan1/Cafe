@@ -15,6 +15,7 @@ session_start();
     <link  rel="icon"   href="../assets/img/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="../burbujas.js"></script>
     <title>Registro de usuario</title>
     <?php
         include("../Layout/estilos.php");

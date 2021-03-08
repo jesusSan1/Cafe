@@ -16,6 +16,7 @@ include("../Conexion/cn.php");
         <link  rel="icon"   href="../assets/img/favicon.png" type="image/png" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <script src="../burbujas.js"></script>
         <title>Actualizar datos</title>
         <?php
         include("../Layout/estilos.php");
