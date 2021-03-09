@@ -56,7 +56,7 @@ session_start();
 
     </form> -->
     
-    <form method="POST" action="registro.php">
+    <form method="POST" action="registro.php" onclick="return validacion()">
     <div class="container">
 
     <div class="signup-form-container">
@@ -78,7 +78,7 @@ session_start();
             <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                   <input name="txtNombre" type="text" class="form-control" placeholder="Nombre" autofocus="autofocus">
+                   <input name="txtNombre" type="text" class="form-control" placeholder="Nombre" id="txtNombre" autofocus="autofocus" required>
                    </div>
                    <span class="help-block" id="error"></span>
               </div>
@@ -86,35 +86,35 @@ session_start();
               <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                   <input name="txtApepat" type="text" class="form-control" placeholder="Apellido paterno">
+                   <input name="txtApepat" type="text" class="form-control" id="txtApepat" placeholder="Apellido paterno" required>
                    </div> 
                    <span class="help-block" id="error"></span>                     
               </div>
               <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                   <input name="txtApemat" type="text" class="form-control" placeholder="Apellido materno">
+                   <input name="txtApemat" type="text" class="form-control" id="txtApemat" placeholder="Apellido materno" required>
                    </div> 
                    <span class="help-block" id="error"></span>                     
               </div>
               <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                   <input name="txtNumeroCel" type="text" class="form-control" placeholder="Número de telefono">
+                   <input name="txtNumeroCel" type="text" class="form-control" id="txtNumeroCel" placeholder="Número de telefono" required>
                    </div> 
                    <span class="help-block" id="error"></span>                     
               </div>
               <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                   <input name="txtUsuario" type="text" class="form-control" placeholder="usuario">
+                   <input name="txtUsuario" type="text" class="form-control" id="txtUsuario" placeholder="usuario" required>
                    </div> 
                    <span class="help-block" id="error"></span>                     
               </div>
               <div class="form-group">
                    <div class="input-group">
                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                   <input name="txtPassword" type="password" class="form-control" placeholder="Password">
+                   <input name="txtPassword" type="password" class="form-control" id="txtPassword" placeholder="Password" required>
                    </div> 
                    <span class="help-block" id="error"></span>                     
               </div>
@@ -166,11 +166,7 @@ session_start();
  </div>
  </form>
 
-    <?php 
-    
-        ?>
-
-    <!--$_SESSION-->
+<script src="validacionDeCampos.js"></script>
 </body>
 
 </html>
