@@ -62,7 +62,8 @@
                         include("../Layout/scripts.php");
                         if(isset($_SESSION['MensajeExito'])){?>
                             <script> swal('Enhorabuena', 'Has sido registrado en el sistema', 'success');</script>
-                            <?php session_unset();}?>    
+                            <?php session_unset();}?>   
+                        
     </div>
     <?php
         include("../Layout/scripts.php");
