@@ -47,6 +47,8 @@
                             <div class="form-group">
                                 <center>
                                     <a href="wfrmRegistrar.php" class="btn btn-outline-primary btn-block" name="registrarse">Registrarse</a>
+                                    <br>
+                                    <a href="#" >¿Olvidó su contraseña?</a>
                                 </center>
                             </div>
                         </div>
