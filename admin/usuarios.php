@@ -79,11 +79,11 @@ include("../Layout/estilos.php");
                             ?>
                 </td>
                 <center>
-                    <td><a href="Editar.php?Id=<?php echo $row['id_Agricultor']; ?>"
+                    <td><a href="wfrmEditar.php?Id=<?php echo $row['id_Agricultor']; ?>"
                             class="btn btn-success"><i class="fa fa-edit"></i></a></td>
                 </center>
                 <center>
-                    <td><a href="Eliminar.php?Id=<?php echo $row['id_Agricultor']; ?>"
+                    <td><a href="wfrmEliminar.php?Id=<?php echo $row['id_Agricultor']; ?>"
                             class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
                 </center>
                 </td>

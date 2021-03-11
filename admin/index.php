@@ -1,6 +1,11 @@
 
-<?php 
+<?php
+session_start(); 
+Include('../Conexion/cn.php');
 include("../Layout/scripts.php");
+if(!isset($_SESSION['username'])){
+    header("Location: LoginAdmin.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +30,8 @@ include("../Layout/scripts.php");
     <?php 
         include("navbar.php");
     ?>
+      <a href="Cerrar.php"><input type="submit" value="Cerrar sesion" class="btn btn-danger"> </a>
+
     <script src=".../burbujas.js"></script>
 </body>
 

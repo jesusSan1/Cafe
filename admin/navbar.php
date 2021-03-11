@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="noticias.php">Noticias</a>
+        <a class="nav-link active" aria-current="page" href="#">Noticias</a>
         </li>
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="usuarios.php">Usuarios</a>
@@ -15,7 +15,7 @@
       </ul>
       <form class="d-flex">
         
-        <button class="btn btn-danger" type="submit">Cerrar sesión</button>
+      <a href="Cerrar.php"><input type="submit" value="Cerrar sesion" class="btn btn-danger"> </a>
       </form>
     </div>
   </div>
