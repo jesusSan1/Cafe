@@ -13,10 +13,7 @@
         <a class="nav-link active" aria-current="page" href="usuarios.php">Usuarios</a>
         </li>
       </ul>
-      <form class="d-flex">
-        
-      <a href="Cerrar.php"><input type="submit" value="Cerrar sesion" class="btn btn-danger"> </a>
-      </form>
     </div>
+    <?php echo"<a href='Cerrar.php'><input type='submit' value='Cerrar sesion' class='btn btn-danger'> </a>"; ?>
   </div>
 </nav>

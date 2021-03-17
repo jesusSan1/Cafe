@@ -1,6 +1,51 @@
 
 <?php 
+include('../Conexion/cn.php');
 include("../Layout/scripts.php");
+/* if(isset($_POST['editar'])){
+    $id = $_GET['id'];
+   // $usuario = $_SESSION['idUsuario'];
+    $nombre = $_POST['txtNombre'];
+    $apepat = $_POST['txtApepat'];
+    $apemat = $_POST['txtApemat'];
+    $numeroCel = $_POST['txtNumeroCel'];
+    $query = "UPDATE Cafeticultor set nombre = '$nombre', apepat = '$apepat', apemat = '$apemat', numeroCel = '$numeroCel' WHERE id_Agricultor = '$id'";
+    mysqli_query($conexion, $query);
+    echo "<script> alert('Actualizado correctamente'); </script>";
+    header("location: usuarios.php");
+}
+else{
+    echo "<script> alert('Ocurrio un error'); </script>";
+    header('Location: wfrmEditar.php');
+} */
+
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $query = "SELECT * FROM cafeticultor WHERE id_Agricultor = $id";
+    $resultado = mysqli_query($conexion, $query);
+    if(mysqli_num_rows($resultado)==1){
+        $fila = mysqli_fetch_array($resultado);
+        $nombre = $fila['nombre'];
+        $apepat = $fila['apepat'];
+        $apemat = $fila['apemat'];
+        $numeroCel = $fila['numeroCel'];
+        $usuario = $fila['usuario'];
+        $pwd = $fila['pwd'];
+    }
+}
+if(isset($_POST['editar'])){
+    $id = $_GET['id'];
+    $nombre = $_POST['txtNombre'];
+    $apepat = $_POST['txtapepat'];
+    $apemat = $_POST['txtapemat'];
+    $numeroCel = $_POST['txtNumeroCel'];
+    $usuario = $_POST['txtUsuario'];
+    $pwd = $_POST['txtPassword'];
+    $query = "UPDATE cafeticultor set nombre = '$nombre', apepat = '$apepat', apemat = '$apemat', numeroCel = '$numeroCel, usuario = '$usuario', pwd = '$pwd' WHERE id_Agricultor = $id";
+    mysqli_query($conexion, $query);
+    echo "<script> alert('Usuario actualizado'); </script>";
+    header("Location: usuarios.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +67,7 @@ include("../Layout/scripts.php");
         include("navbar.php");
     ?>
     <br>
-<form method="POST" action="" onclick="return validacion()">
+<form action="wfrmEditar.php?id=<?php echo $_GET['id']?>" method="POST">
     <div class="container">
 
     <div class="signup-form-container">
@@ -91,8 +136,7 @@ include("../Layout/scripts.php");
                         <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                         <!-- Guardar -->
-                        <input  type="submit" value="Editar" class="btn btn-success" name="guardar">
-
+                        <td><a class="btn btn-success">Editar</a></td>
                         </div>  
                         <span class="help-block" id="error"></span>                    
                    </div>

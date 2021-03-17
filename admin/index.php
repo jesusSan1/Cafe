@@ -30,7 +30,7 @@ if(!isset($_SESSION['username'])){
     <?php 
         include("navbar.php");
     ?>
-      <a href="Cerrar.php"><input type="submit" value="Cerrar sesion" class="btn btn-danger"> </a>
+
 
     <script src=".../burbujas.js"></script>
 </body>
