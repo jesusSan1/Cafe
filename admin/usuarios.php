@@ -1,8 +1,8 @@
 
-<?php 
-include("../Layout/scripts.php");
-include("../Conexion/cn.php");
-include("../Layout/estilos.php");
+<?php
+include "../Layout/scripts.php";
+include "../Conexion/cn.php";
+include "../Layout/estilos.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,9 @@ include("../Layout/estilos.php");
 </head>
 
 <body>
-    <?php 
-        include("navbar.php");
-    ?><center>
+    <?php
+include "navbar.php";
+?><center>
         <h2>Aqui puedes editar o eliminar un usuario</h2>
     </center>
     <div class="container">
@@ -37,53 +37,53 @@ include("../Layout/estilos.php");
     </tr>
   </thead>
   <tbody>
-  <?php 
-                $cmd = "select * from Cafeticultor";
-                $resultado = $conexion->query($cmd);
-                while($row = $resultado->fetch_array(MYSQLI_ASSOC)){
-                    ?>
+  <?php
+$cmd = "select * from Cafeticultor";
+$resultado = $conexion->query($cmd);
+while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
+    ?>
     <tr>
                 <th scope="row">
-                    <?php 
-                                echo $row['id_Agricultor']
-                            ?>
+                    <?php
+echo $row['id_Agricultor']
+    ?>
                 </th>
                 <td>
-                    <?php 
-                                echo $row['nombre']
-                            ?>
+                    <?php
+echo $row['nombre']
+    ?>
                 </td>
                 <td>
-                    <?php 
-                                echo $row['apepat']
-                            ?>
+                    <?php
+echo $row['apepat']
+    ?>
                 </td>
                 <td>
-                    <?php 
-                                echo $row['apemat']
-                            ?>
+                    <?php
+echo $row['apemat']
+    ?>
                 </td>
                 <td>
-                    <?php 
-                                echo $row['numeroCel']
-                            ?>
+                    <?php
+echo $row['numeroCel']
+    ?>
                 </td>
                 <td>
-                    <?php 
-                                echo $row['usuario']
-                            ?>
+                    <?php
+echo $row['usuario']
+    ?>
                 </td>
                 <td>
-                    <?php 
-                                echo $row['pwd']
-                            ?>
+                    <?php
+echo $row['pwd']
+    ?>
                 </td>
                 <center>
                     <td><a href="wfrmEditar.php?Id=<?php echo $row['id_Agricultor']; ?>"
                             class="btn btn-success"><i class="fa fa-edit"></i></a></td>
                 </center>
                 <center>
-                    <td><a href="wfrmEliminar.php?Id=<?php echo $row['id_Agricultor']; ?>"
+                    <td><a href="Eliminar.php?Id=<?php echo $row['id_Agricultor']; ?>"
                             class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
                 </center>
                 </td>
