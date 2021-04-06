@@ -1,11 +1,4 @@
-<?php
-    session_start();
-    include("../Conexion/cn.php");
-    //Si el usuario no está logeado, lo redirige a inicio de sesion
-    if(!isset($_SESSION['idUsuario'])){
-        header("Location: ../Cafe/Login.php");
-    }
-?>
+<!--  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 
@@ -65,11 +58,23 @@
 
 				// Request body.
 				data: '{"url": ' + '"' + sourceImageUrl + '"}',
+				success: function (resultado){
+					console.log(resultado);
+                        // $('#textarea').append(JSON.stringify(resultado));
+                        //alert(JSON.stringify(resultado.predictions));
+                        for (var i = 0; i < resultado.predictions.length; i++) {
+                            //alert(JSON.stringify(resultado.predictions[i].probability));
+                            var nombre = JSON.stringify(resultado.predictions[i].tagName)
+                            var pro = JSON.stringify(resultado.predictions[i].probability)
+                            $('#responseTextArea').append("La probabilidad de que la planta tenga " + resultado.predictions[i].tagName + ' es de: ' + resultado.predictions[i].probability + '%'+ '\n' + '\n');
+                            //alert(resultado.predictions[i].tagName)
+                        }
+				}
 			})
 
 				.done(function (data) {
 					// Show formatted JSON on webpage.
-					$("#responseTextArea").val(JSON.stringify(data, null, 2));
+ 					//$("#responseTextArea").val(JSON.stringify(data, null, 2));
 				})
 
 				.fail(function (jqXHR, textStatus, errorThrown) {
@@ -124,7 +129,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-4">
-						<input type="text" name="inputImage" id="inputImage" value=" " class="form-control" />
+						<input type="text" name="inputImage" id="inputImage" value=" " class="form-control" autofocus='autofocus'/>
 
 					</div>
 				</div>
@@ -144,7 +149,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-3">
-					<button class="btn btn-primary" onclick="processImage()">Analizar imagen</button>
+					<button class="btn btn-primary" onclick="processImage()" id="btn">Analizar imagen</button>
 				</div>
 			</div>
 			<!-- La modal -->
@@ -195,11 +200,11 @@
 
 		<div class="col-12 col-md-4">
 			<div Style=" margin-left: 30px; color: beige;" id="jsonOutput" style="width:600px; display:table-cell;">
-				Datos Generados
+				Resultados
 			</div>
 			<div Style=" margin-left: 30px; color: black;" id="jsonOutput" style="width:600px; display:table-cell;">
 				<br><br>
-				<textarea id="responseTextArea" class="UIInput" style="width:350px; height:200px;"></textarea>
+				<textarea id="responseTextArea" class="UIInput form-control" style="width:350px; height:200px;"></textarea>
 			</div>
 		</div>
 		<div class="col-6 col-md-4">
@@ -209,7 +214,7 @@
 				Cargar Imagen
 				<br><br>
 				<img id="sourceImage" width="350px" height="200px"/>
-	
+
 			</div>
 		</div>
 
