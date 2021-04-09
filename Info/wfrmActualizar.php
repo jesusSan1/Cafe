@@ -4,7 +4,7 @@ session_start();
 //if(!isset($_SESSION['Autenticado'])){
 //    header("location: Login.php?status=500");
 //}
-include("../Conexion/cn.php");
+include "../Conexion/cn.php";
 ?>
 
     <!DOCTYPE html>
@@ -19,41 +19,45 @@ include("../Conexion/cn.php");
         <script src="../burbujas.js"></script>
         <title>Actualizar datos</title>
         <?php
-        include("../Layout/estilos.php");
-    ?>
+include "../Layout/estilos.php";
+?>
     </head>
 
     <body>
         <?php
-            include("../Layout/header.php");
-        ?>
+include "../Layout/header.php";
+?>
         <?php
-           
-            //AQUI VAMOS A PROGRAMAR LA PARTE DE LA CARGA DE LA INFORMACION ALMACENADA
+
+//AQUI VAMOS A PROGRAMAR LA PARTE DE LA CARGA DE LA INFORMACION ALMACENADA
 /*             if(!isset($_GET['Id'])){
-                
-                $cmd = $conexion->prepare("select * from Cafeticultor where id_Agricultor=?");
-                $cmd->bind_param("i",$id_Agricultor);
-                $cmd->execute();
-                $cmd->bind_result($id_Agricultor,$nombre,$apepat,$apemat,$numeroCel);
-                $cmd->store_result();
-                $cmd->fetch();
-                $cmd->close();
-            } */
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
-                $query = "SELECT id_Agricultor FROM Cafeticultor WHERE id = $id";
-                $resultado = mysqli_query($conexion, $query);
-                if(mysqli_num_rows($resultado)==1){
-                    $fila = mysqli_fetch_array($resultado);
-                    $nombre = $fila['txtNombre'];
-                    $apepat = $fila['txtApepat'];
-                    $apemat = $fila['txtApemat'];
-                    $numeroCel = $fila['txtNumCel'];
-                }
-            }
-          
-        ?>
+
+$cmd = $conexion->prepare("select * from Cafeticultor where id_Agricultor=?");
+$cmd->bind_param("i",$id_Agricultor);
+$cmd->execute();
+$cmd->bind_result($id_Agricultor,$nombre,$apepat,$apemat,$numeroCel);
+$cmd->store_result();
+$cmd->fetch();
+$cmd->close();
+} */
+if (isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+    $query = "SELECT * FROM cafeticultor WHERE id_Agricultor = $id";
+    $resultado = mysqli_query($conexion, $query);
+
+    if (mysqli_num_rows($resultado) == 1) {
+        $fila = mysqli_fetch_array($resultado);
+        $nombre = $fila['nombre'];
+        $apepat = $fila['apepat'];
+        $apemat = $fila['apemat'];
+        $numeroCel = $fila['numeroCel'];
+        $usuario = $fila['usuario'];
+        $pwd = $fila['pwd'];
+    }
+}
+
+?>
 
         <ul>
             <!---->
@@ -85,16 +89,16 @@ include("../Conexion/cn.php");
             <div class="card card-body">
                 <form action="Actualizar.php" method="POST">
                     <div class="form-group">
-                        <input type="text" name="txtNombre" value="" class="form-control" placeholder="Actualizar nombre">
+                        <input type="text" name="txtNombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre">
                     </div>
                     <div class="form-group">
-                    <input type="text" name="txtApepat" value="" class="form-control" placeholder="Actualizar apellido paterno">
+                    <input type="text" name="txtApepat" value="<?php echo $apepat ?>" class="form-control" placeholder="Actualizar apellido paterno">
                     </div>
                     <div class="form-group">
-                    <input type="text" name="txtApemat" value="" class="form-control" placeholder="Actualizar apellido materno">
+                    <input type="text" name="txtApemat" value="<?php echo $apemat ?>" class="form-control" placeholder="Actualizar apellido materno">
                     </div>
                     <div class="form-group">
-                    <input type="text" name="txtNumCel" value="" class="form-control" placeholder="Actualizar numero de celular">
+                    <input type="text" name="txtNumCel" value="<?php echo $numeroCel ?>" class="form-control" placeholder="Actualizar numero de celular">
                     </div>
                     <div class="form-group">
                     <input  href="Informacion.php"type="submit" value="Actualizar" class="btn btn-success" name="actualizar">
@@ -117,8 +121,8 @@ include("../Conexion/cn.php");
                 </p>
                 </br></br></br></br>
             </form>
-            <?php include("../Layout/scripts.php");
-        ?>
+            <?php include "../Layout/scripts.php";
+?>
 
             <!--$_SESSION-->
 

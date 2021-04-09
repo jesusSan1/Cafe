@@ -1,13 +1,13 @@
 <?php
 session_start();
-include("../Conexion/cn.php");
+include "../Conexion/cn.php";
 //Si el usuario no está logeado, lo redirige a inicio de sesion
-if(!isset($_SESSION['idUsuario'])){
+if (!isset($_SESSION['idUsuario'])) {
     header("Location: ../Cafe/Login.php");
 }
 //Sirve para mostrar la informacion del usuario logeado
 $usuario = $_SESSION['idUsuario'];
-$sql = "SELECT nombre, apepat, apemat, numeroCel FROM Cafeticultor WHERE id_Agricultor = '$usuario'";
+$sql = "SELECT id_Agricultor, nombre, apepat, apemat, numeroCel FROM Cafeticultor WHERE id_Agricultor = '$usuario'";
 $resultado = $conexion->query($sql);
 $row = $resultado->fetch_assoc();
 ?>
@@ -18,7 +18,7 @@ $row = $resultado->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../burbujas.js"></script>
     <title>Perfil de usuario</title>
-    
+
     <link  rel="icon"   href="../assets/img/favicon.png" type="image/png" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="../css/miPerfil.css">
@@ -61,7 +61,7 @@ $row = $resultado->fetch_assoc();
                     <a class="btn btn-primary" href="../index.html" role="button">Regresar Inicio</a>
                     <br>
                     <br>
-                    <td><a href="wfrmActualizar.php?Id=<?php echo $row['id_Agricultor']; ?>" class="btn btn-warning">Actualizar</a></td>
+                    <td><a href="wfrmActualizar.php?id=<?php echo $row['id_Agricultor']; ?>" class="btn btn-warning">Actualizar</a></td>
                     <br>
                     <br>
                     <a class="btn btn-danger" href="salir.php" role="button">Cerrar sesión</a>
@@ -83,10 +83,10 @@ $row = $resultado->fetch_assoc();
                         </thead>
                         <tbody>
                             <tr>
-                                <td><?php echo $row['nombre']?></td>
-                                <td><?php echo $row['apepat']?></td>
-                                <td><?php echo $row['apemat']?></td>
-                                <td><?php echo $row['numeroCel']?></td>
+                                <td><?php echo $row['nombre'] ?></td>
+                                <td><?php echo $row['apepat'] ?></td>
+                                <td><?php echo $row['apemat'] ?></td>
+                                <td><?php echo $row['numeroCel'] ?></td>
                             </tr>
                         </tbody>
                     </form>
