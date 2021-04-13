@@ -4,6 +4,7 @@
 
 <head>
 	<link rel="stylesheet" href="../css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -89,9 +90,9 @@
 	</script>
 	<div class="page-container">
 		<nav class="full-reset nav-phonestore">
-			<div class="logo tittles-pages">
-				Cafe Contigo
-			</div>
+			<a href="../index.html"><div class="logo tittles-pages" href="./index.html">
+                Cafe contigo
+            </div></a>
 			<ul class="list-unstyled full-reset navigation-list">
 				<li><a href="../index.html">Inicio</a></li>
 

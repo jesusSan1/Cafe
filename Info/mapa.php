@@ -1,10 +1,10 @@
 <?php
-    session_start();
-    include("../Conexion/cn.php");
-    //Si el usuario no está logeado, lo redirige a inicio de sesion
-    if(!isset($_SESSION['idUsuario'])){
-        header("Location: ../Cafe/Login.php");
-    }
+session_start();
+include "../Conexion/cn.php";
+//Si el usuario no está logeado, lo redirige a inicio de sesion
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: ../Cafe/Login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
-    
+
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
@@ -44,9 +44,10 @@
 
     <div class="page-container">
         <nav class="full-reset nav-phonestore">
-            <div class="logo tittles-pages">
+
+            <a href="../index.html"><div class="logo tittles-pages" href="./index.html">
                 Cafe contigo
-            </div>
+            </div></a>
             <ul class="list-unstyled full-reset navigation-list">
                 <li><a href="../index.html">Inicio</a></li>
             </ul>
@@ -118,32 +119,32 @@
         var geocoder;
             var map;
             var marker;
-            
+
             /*
              * Google Map with marker
              */
             function initialize(posicion) {
-                
+
                 var initialLat = $('.search_latitude').val();
                 var initialLong = $('.search_longitude').val();
-            
+
                 var latlng = new google.maps.LatLng(initialLat, initialLong);
                 var options = {
                     zoom: 17,
                     center: latlng,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
-            
+
                 map = new google.maps.Map(document.getElementById("geomap"), options);
-            
+
                 geocoder = new google.maps.Geocoder();
-            
+
                 marker = new google.maps.Marker({
                     map: map,
                     draggable: true,
                     position: latlng
                 });
-            
+
                 google.maps.event.addListener(marker, "dragend", function () {
                     var point = marker.getPosition();
                     map.panTo(point);
@@ -157,13 +158,13 @@
                         }
                     });
                 });
-            
+
             }
-            
+
             $(document).ready(function () {
                 //load google map
                 initialize();
-                
+
                 /*
                  * autocomplete location search
                  */
@@ -194,7 +195,7 @@
                         }
                     });
                 });
-                
+
                 /*
                  * Point location on google map
                  */
@@ -213,7 +214,7 @@
                     });
                     e.preventDefault();
                 });
-            
+
                 //Add listener to marker for reverse geocoding
                 google.maps.event.addListener(marker, 'drag', function () {
                     geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {

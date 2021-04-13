@@ -1,10 +1,10 @@
-<?php 
-    session_start();
-    include("../Conexion/cn.php");
-    //Si el usuario no está logeado, lo redirige a inicio de sesion
-    if(!isset($_SESSION['idUsuario'])){
-        header("Location: ../Cafe/Login.php");
-    }
+<?php
+session_start();
+include "../Conexion/cn.php";
+//Si el usuario no está logeado, lo redirige a inicio de sesion
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: ../Cafe/Login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,15 +30,15 @@
     <body>
         <div class="page-container">
             <nav class="full-reset nav-phonestore">
-                <div class="logo tittles-pages">
-                    Cafe Contigo
-                </div>
-                <ul class="list-unstyled full-reset navigation-list">
-                    <li><a href="../index.html">Inicio</a></li>
 
-                </ul>
-                <i class="fa fa-bars visible-xs btn-mobile"></i>
-            </nav>
+            <a href="../index.html"><div class="logo tittles-pages" href="./index.html">
+                Cafe contigo
+            </div></a>
+            <ul class="list-unstyled full-reset navigation-list">
+                <li><a href="../index.html">Inicio</a></li>
+            </ul>
+            <i class="fa fa-bars visible-xs btn-mobile"></i>
+        </nav>
             <div class="content-page cover-background font-content-contact">
                 <section class="contact-form-info section">
                     <div class="container">
@@ -62,8 +62,8 @@
                                 <div class="well">
                                     <h3 class="tittles-pages text-center">Conocenos...!!</h3>
                                     <p>Cafe contigo se encargara de cuidar tus
-                                        sembradios, en base al reconocimiento de 
-                                        patrones de tus cultivos, con el fin de 
+                                        sembradios, en base al reconocimiento de
+                                        patrones de tus cultivos, con el fin de
                                         tener un diagnostico de las plantas de cafe.
                                     </p>
                                 </div>
@@ -83,7 +83,7 @@
                                     trabajo (Zig Ziglar).
                                 </p>
                             </div>
-                           
+
                             <div class="col-xs-12 col-md-8 col-md-pull-4">
                                 <h2 class="tittles-pages text-center">Formulario
                                     de contacto</h2>
@@ -129,7 +129,7 @@
                                     </div>
                                     <button  type="submit" class="btn btn-primary
                                         pull-right" name="enviar">Enviar</button>
-                           
+
                                 </form>
                             </div>
                         </div>
