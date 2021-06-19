@@ -1,20 +1,24 @@
 create database Cafe;
 use cafe;
+
+-- creacion de nueva tabla para la app
 create table Cafeticultor
 (
 	id_Agricultor int auto_increment primary key,
-	nombre varchar(40) not null,
-	apepat varchar(40) not null,
-	apemat varchar(40) not null,
-	numeroCel varchar(10)
- );
- select * from Cafeticultor;
+    nombre varchar (30) not null,
+    apepat varchar(30) not null,
+    apemat varchar(30) not null,
+    numeroCel varchar (30) not null,
+    usuario varchar (30) not null,
+    pwd varchar (30) not null
+ ); 
+
  create table Consulta
  (
 	id_Consulta int auto_increment primary key,
     id_Agricultor int not null,
 	foto_cultivo blob,
-    constraint FOREIGN KEY (id_Agricultor) REFERENCES Cafeticultor(id_Agricultor)
+    constraint FOREIGN KEY (id_Agricultor) REFERENCES cafeticultor(id_Agricultor)
  );
  
   create table Predios
@@ -23,7 +27,7 @@ create table Cafeticultor
 	id_Agricultor int not null,
 	superficie varchar(100),
 	localizacion point,
-	constraint FOREIGN KEY (id_Agricultor) REFERENCES Cafeticultor(id_Agricultor)
+	constraint FOREIGN KEY (id_Agricultor) REFERENCES cafeticultor(id_Agricultor)
  );
  create table Recomendacion
  (
@@ -55,13 +59,6 @@ create table Problemas_Fitosanitarios
      constraint FOREIGN KEY (id_Cultivo) REFERENCES Cultivos(id_Cultivo)
  );
  
- create table Usuarios
-(
-	Id int auto_increment primary key,
-	Nombre varchar(200) not null,
-	usuario varchar(100) not null,
-	pwd varchar(100) not null
-);
 
 create table localizacion
 (
@@ -72,11 +69,39 @@ create table localizacion
     longitud FLOAT NOT NULL 
 );
 
-Drop table localizacion;
+-- tabla para el administrador
+create table administrador(
+    usuario varchar (30) not null,
+    pwd varchar (30) not null
+);
+-- INSERTAR LOS VALORES DE ADMIN
+INSERT INTO `cafe`.`administrador` (`usuario`, `pwd`)
+VALUES ('admin', 'QWERTY%123');
+
+-- Tabla para los eventos de calendario
+create table eventos(
+	id int auto_increment primary key,
+    title varchar (255),
+    descripcion text,
+    color varchar(255),
+    textColor varchar (255),
+    start datetime,
+    end datetime
+);
+-- Insertar valores a la tabla de eventos
+INSERT INTO `cafe`.`eventos` (`id`, `title`, `descripcion`, `color`, `textColor`, `start`, `end`)
+VALUES ('1', 'Evento 1', 'Regar planta', '#FF0F0', '#FFFFFF', '2021-03-17 02:44:00', '2021-03-19 02:44:00');
+
+-- Drop table localizacion;
+select * from eventos;
 select * from Cafeticultor;
+select * from administrador;
 select * from Consulta;
 select * from Cultivos;
 select * from Predios;
 select * from problemas_Fitosanitarios;
 select * from Recomendacion;
-select * from Usuarios;
+select * from roles;
+-- drop table cafeticultor;
+-- drop table admin;
+-- drop database cafe;
